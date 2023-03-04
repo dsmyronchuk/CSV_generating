@@ -1,2 +1,60 @@
 {% extends 'schemas/base.html' %}
 {% load static %}
+
+{% block content %}
+
+<div class="row header-line">
+
+    <div class="col-3 text-start" >
+      <div id="data-schemas">Data schemas</div>
+    </div>
+
+    <div style="padding: 0;" class="col-2 offset-2">
+      <div class="text-end">
+          <button id="NewSchema-button" style="background-color: green; border-color: green;" class="btn btn-primary">New Schema</button>
+      </div>
+    </div>
+
+</div>
+
+<div style="padding-top: 1rem;" class="container d-inline-block">
+    <div class="row">
+        <div style="padding: 0;" class="col">
+            <table class="table d-inline-block table-bordered table-scripted">
+                <thead>
+                    <tr>
+                        <th class="col-1">#</th>
+                        <th class="col-2">Title</th>
+                        <th class="col-2">Modified</th>
+                        <th class="col-2">Actions</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in object_list %}
+                    <tr>
+                        <td class="col-1 table-numeric">{{forloop.counter}}</td>
+                        <td class="col-2 table-title"><a href="{{ i.get_absolute_url }}">{{i.Name}}</a></td>
+                        <td class="col-2">{{i.Modified|date:'Y-m-d'}}</td>			
+                        <td class="col-2">
+                            <div class="actions-block">
+                                <div class="edit">Edit schema</div>
+                                <div class="delete"><a>Delete</a></div>
+                            </div>
+                        </td>	
+                    </tr>
+                    {% endfor %}		
+                </tbody>	
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+const button = document.getElementById('NewSchema-button');
+button.addEventListener('click', function() {
+  window.location.href = "{% url 'NewSchemas' %}";
+});
+</script>
+{% endblock %}

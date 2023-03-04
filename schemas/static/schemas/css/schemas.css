@@ -1,11 +1,19 @@
 body {
-    width: 100%;
     height: 100%;
     background-color: #F7F7F7;
     margin: 0;
     padding: 0;
 }
 
+input{
+    border: 1px solid rgb(118, 118, 118, 0.3);
+    border-radius: 5px;
+}
+
+.wrap{
+    width: 90%;
+    margin: 0 auto;
+}
 
 .header-line{
     line-height: 3rem;
@@ -17,4 +25,247 @@ body {
 
 p,a {
     text-decoration: none !important; 
+}
+
+#data-schemas{
+	font-size: 34px; 
+	/* padding-left: 3.5rem; */
+	color: black;
+	font-weight: 500;
+}
+
+
+#edit-schema{
+    padding-top: 5px;
+}
+
+
+
+.container-style{
+	margin-left: 3.5rem;
+    padding: 0;
+}
+
+.table-numeric{
+	font-weight: 500;
+}
+
+.table-title{
+	color: #0b5ed7;
+}
+
+.actions-block{
+	display: flex;
+}
+
+.edit{
+	color: #0b5ed7;
+}
+
+.delete{
+	margin-left: 1rem;
+	color: #dc3545;
+}
+
+
+.right-block .input-text{
+    width: 30%;
+}
+
+
+.column-name{
+    margin-bottom: 7px;
+}
+
+.new-schema-top {
+    display: flex;
+}
+
+.new-schema-top .input-text{
+    width: 35%;
+}
+
+#error-space{
+    margin-left: 5%;
+    color:#dc3545;
+}
+
+.new-schema-first-block{
+    margin-top: 15px;
+}
+
+.new-schema-second-block{
+    margin-top: 15px;
+    padding-left: 15px;
+    width: 75%;
+}
+
+.new-schema-third-block{
+    margin-top: 30px;
+    border: 1px solid rgb(118, 118, 118, 0.3);
+    padding-left: 15px;
+    width: 75%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.one-input-block{
+    margin-bottom: 10px;
+}
+
+.one-input-block .text-start{
+    margin-bottom: 7px;
+  }
+
+
+.custom-select {
+    display: inline-block;
+    position: relative;
+    width: 35%;
+    height: 30px;
+    font-size: 16px;
+    overflow: hidden;
+    border: 1px solid rgb(118, 118, 118, 0.3);
+    border-radius: 5px;
+  }
+
+  .block-columns-select .custom-select {
+    width: 60%;
+  }
+  
+  .custom-select .select-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 100%;
+    font-size: 14px;
+  }
+  
+  .custom-select .select-input .selected-value {
+    flex-grow: 1;
+  }
+  
+  .custom-select .select-input button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  
+  .custom-select .hidden-select {
+    display: none;
+  }
+  
+  .buttons-arrow{
+      display: flex;
+      flex-flow: column;
+  }
+
+.block-columns-select{
+    display: flex;
+    margin-top: 15px;
+}
+
+
+
+.left-block{
+    width: 30%;
+    display: block;
+}
+
+.center-block{
+    width: 20%;
+}
+
+.right-block{
+    width: 20%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.functional-block{
+    width: 20%;
+    display: flex;
+}
+
+.left-block .input-text{
+    width: 70%;
+    text-indent: 10px;
+}
+
+.center-block .input-text{
+    width: 70%;
+    text-indent: 10px;
+}
+
+.functional-block .input-text{
+    width: 60%;
+    text-indent: 10px;
+}
+
+.right-block .input-text{
+    width: 60%;
+    text-indent: 10px;
+}
+
+.block-del-order{
+    width: 60%;
+}
+
+.block-del-order .input-text {
+
+    width: 90%;
+}
+
+.block-delete{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.block-columns-select .custom-select {
+    width: 90%;
+
+  }
+
+.block-add-column{
+    margin-bottom: 2%;
+}
+
+/* data sets page */
+
+
+.data-set{
+    line-height: 3rem;
+}
+
+#count-rows input{
+    width: 90px;
+    font-size: 20px;
+    height: 5vh;
+}
+
+.download-csv{
+    color: #0b5ed7;
+}
+
+.dataset-ready{
+    padding-left: 10px;
+    width: 25%;
+    background-color: #008000;
+    border: 1px solid #008000;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.dataset-processing{
+    padding-left: 10px;
+    width: 35%;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    color: #fff;
 }

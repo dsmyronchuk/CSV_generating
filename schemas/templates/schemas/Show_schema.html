@@ -1,0 +1,99 @@
+{% extends 'schemas/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row header-line">
+    <div class="col-3 text-start" >
+      <div id="data-schemas">{{object.Name}}</div>
+    </div>
+
+    <div style="padding: 0;" class="col-2">
+      <div id="edit-schema" class="text-start">
+            <a  href="#" >Edit schema</a>
+      </div>
+    </div>
+</div>
+
+
+
+<div style="padding-top: 1rem;" class="container d-inline-block">
+    <div class="row">
+        <div style="padding: 0;" class="col">
+            <table class="table d-inline-block table-bordered table-scripted">
+                <thead>
+                    <tr>
+                        <th class="col-1">#</th>
+                        <th class="col-2">Column name</th>
+                        <th class="col-2">Column type</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in schema_columns %}
+                    <tr>
+                        <td class="col-1 table-numeric">{{forloop.counter}}</td>
+                        <td class="col-2">{{i.Name}}</td>
+                        <td class="col-2">{{i.TypeColumn}}</td>
+                    </tr>
+                    {% endfor %}		
+                </tbody>	
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row data-set">
+    <div class="col-3 text-start" >
+      <div id="data-schemas">Data sets</div>
+    </div>
+
+    <div style="padding: 0;" class="col-1 offset-3 text-end">Rows:</div>
+
+    <div style="padding: 0;" class="col-1">
+        <div id="count-rows" class="text-center">
+            <input class="input-text" type="text" value="0">
+        </div>
+    </div>
+
+    <div style="padding: 0;" class="col-2">
+      <div class="text-start">
+          <button id="Generate-data" style="background-color: green; height: 5vh; border-color: green;" class="btn btn-primary">Generate data</button>
+      </div>
+    </div>
+</div>
+
+<div style="padding-top: 1rem;" class="container d-inline-block">
+    <div class="row">
+        <div style="padding: 0;" class="col">
+            <table id="data-sets" class="table table-bordered table-scripted">
+                <thead>
+                    <tr>
+                        <th class="col-1">#</th>
+                        <th class="col-2">Created</th>
+                        <th class="col-2">Status</th>
+                        <th class="col-2">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in data_sets %}
+                    <tr>
+                        <td class="col-1 table-numeric">{{forloop.counter}}</td>
+                        <td class="col-2">{{i.created|date:'Y-m-d'}}</td>
+                        <td class="col-2">
+                            <div class="dataset-ready">Ready</div>
+                        </td>
+                        <td class="col-2 download-csv"><a href="{% url 'download_file' schema_name=i.Schemas.Name dataset_id=i.pk %}">Download</a></td>
+                    </tr>
+                    {% endfor %}		
+                </tbody>	
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  const csrfToken = "{{ csrf_token }}";
+</script>
+<script src="{% static 'schemas/js/generateDataButton.js' %}"></script>
+{% endblock %}

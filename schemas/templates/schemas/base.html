@@ -13,55 +13,49 @@
     <title>{{title}}</title>
 </head>
 <body>
-    <!-- <div class="header">
-        <div class="left-side">
-            <div class="row"><h1>FakeCSV</h1></div>
-            <div class="row">Schemas</div>
+<div class="wrap">
+
+  <div class="row">
+
+      <div class="col-1">
+        <div class="text-start">
+          <p style="font-size: 28px" class="header-line"><a style="color: #000000" href="{% url 'DateSchemas' %}">FakeCSV</a></p>
+        </div>
+      </div>
+
+      <div class="col-1">
+        <div class="text-center">
+          <p class="header-line"><a style="color: #000000" href="{% url 'DateSchemas' %}">Schemas</a></p>
+        </div>
+      </div>
+
+      {% if request.user.is_authenticated %}
+      <div class="col-2 offset-6">
+        <div class="text-end">
+          <p class="header-line header-right">Hello, <b>{{user.username}}</b></p>
+        </div>
+      </div>
+
+      <div class="col-2 ">
+        <div class="text-start">
+          <a href="{% url 'logout' %}" class="header-line header-right">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="col-2 offset-6">
+          <div class="text-end">
+            <a href="{% url 'login' %}" class="header-line header-right">login</a>
+          </div>
         </div>
 
-        <div class="right-side"></div>
-    </div> -->
-
-
-        <div class="row">
-
-            <div class="col-2">
-              <div class="text-center">
-                <p style="font-size: 28px" class="header-line">FakeCSV</p>
-              </div>
-            </div>
-
-            <div class="col-2">
-              <div class="text-start">
-                <p class="header-line">Schemas</p>
-              </div>
-            </div>
-        
-            {% if request.user.is_authenticated %}
-            <div class="col-2 offset-4">
-              <div class="text-end">
-                <p class="header-line header-right">Hello, <b>{{user.username}}</b></p>
-              </div>
-            </div>
-
-            <div class="col-2 ">
-              <div class="text-start">
-                <a href="{% url 'logout' %}" class="header-line header-right">Logout</p>
-              </div>
-            </div>
-            {% else %}
-            <div class="col-2 offset-6">
-                <div class="text-end">
-                  <a href="{% url 'login' %}" class="header-line header-right">login</p>
-                </div>
-              </div>
-
-            {% endif%}
-          </div>
+      {% endif%}
+    </div>
 
 
     {% block content%}
     {% endblock %}
-    
+
+</div>
+
 </body>
 </html>

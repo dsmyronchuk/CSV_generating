@@ -1,0 +1,139 @@
+{% extends 'schemas/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row header-line">
+
+    <div class="col-3 text-start" >
+      <div id="data-schemas" >New schemas</div>
+    </div>
+
+    <div style="padding: 0;" class="col-2 offset-4">
+      <div class="text-end">
+          <button id="NewSchema-submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+</div>
+
+<div class="new-schema-first-block">
+
+    <!-- Name line -->
+    <div class="one-input-block">
+        <div class="column-name">Name</div>
+        <div class="new-schema-top">
+            <input class="input-text" type="text" name="{{schema}}">
+            <div id="error-space"></div>  <!-- An accident error will appear here. -->
+        </div>
+    </div>
+
+    <!-- Separator Line -->
+    <div class="one-input-block">
+        <div class="column-name">Column separator</div>
+        <div class="custom-select">
+            <div class="select-input">
+                <div id="column-separator" class="selected-value">-----</div>
+                <div class=buttons-arrow>
+                    <button class="btn-up">&#9650;</button>
+                    <button class="btn-down">&#9660;</button>
+                </div>	
+            </div>
+            
+            <select class="hidden-select">
+                {% for s in separator %}
+                    <option value={{s}}>{{s.Name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+      
+    <!-- String character Line -->
+    <div class="one-input-block">
+        <div class="column-name">String character</div>
+        <div class="custom-select">
+            <div class="select-input">
+                <div id="string-character" class="selected-value">-----</div>
+                <div class=buttons-arrow>
+                    <button class="btn-up">&#9650;</button>
+                    <button class="btn-down">&#9660;</button>
+                </div>	
+            </div>
+            
+            <select class="hidden-select">
+                {% for c in character %}
+                    <option value={{s}}>{{c.Name}}</option>
+                {% endfor %}
+            </select>
+        </div>    
+    </div>
+
+</div>
+
+
+<div class="new-schema-second-block">
+
+    <div class="col-4 text-start" >
+        <div id="data-schemas" >Schema columns</div>
+    </div>
+    
+</div>
+
+<div class="new-schema-third-block">
+    <div class="one-input-block">
+        <div class="block-columns-select">
+
+            <div class="left-block">
+                <div class="column-name">Column name</div>
+                <input class="input-text" type="text" name="{{schema}}">
+            </div>
+
+            <div class="center-block">
+
+                <div class="column-name">Type</div>
+                <div class="custom-select">
+                    
+                    <div class="select-input">
+                        <div class="selected-value">-----</div>
+                        <div class=buttons-arrow>
+                            <button class="btn-up">&#9650;</button>
+                            <button class="btn-down">&#9660;</button>
+                        </div>	
+                    </div>
+                    
+                    <select id="modelSelect" class="hidden-select">
+                        {% for tc in type_column %}
+                            <option value={{tc}}>{{tc.TypeName}}</option>
+                        {% endfor %}
+                    </select>              
+                </div>
+
+            </div> 
+
+            <div class="functional-block">
+
+            </div> 
+
+            <div class="right-block">
+                <div class="block-del-order">
+                    <div class="column-name">Order</div>
+                    <input class="input-text" type="text" value="0">
+                </div>
+                <div class="block-delete">
+                    <div class="column-name delete">Delete</div>
+                </div>
+            </div> 
+
+        </div>
+</div>
+
+<div class="block-add-column">
+    <button id="add-column" class="btn btn-primary" type="submit">Add Column</button>
+</div>
+
+<script type="text/javascript">
+  const csrfToken = "{{ csrf_token }}";
+</script>
+<script src="{% static 'schemas/js/addColumn.js' %}"></script>
+<script src="{% static 'schemas/js/customSelector.js' %}"></script>
+<script src="{% static 'schemas/js/saveNewSchema.js' %}" data-user-id="{{ user_id }}"></script>
+{% endblock %}
