@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d$d2o85qgf$^e(r(1nhewbyjw#ze*-t9j9hv12g16w3t_g=#!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,11 +77,14 @@ WSGI_APPLICATION = 'CSV_generating.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CSV_generating',
-        'USER': 'django_user',
+        # 'USER': 'django_user',
+        'USER': 'dsmyronchuk',
         'PASSWORD': 'NoizeMc2022',
-        'HOST': 'localhost',
+        # 'HOST': 'localhost',
+        'HOST': 'dsmyronchuk.mysql.pythonanywhere-services.com',
         'PORT': '5432'
     }
 }
@@ -133,3 +136,5 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1', ]

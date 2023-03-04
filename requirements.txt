@@ -4,3 +4,4 @@ psycopg2-binary==2.9.5
 sqlparse==0.4.3
 Faker==17.6.0
 pandas==1.5.3
+mysqlclient
