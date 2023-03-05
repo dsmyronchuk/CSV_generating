@@ -1,6 +1,6 @@
 let btnSubmit = document.querySelector('#NewSchema-submit')
 btnSubmit.addEventListener('click', saveNewSchema)
-let url = 'http://127.0.0.1:8000/'
+let url = 'http://dsmyronchuk.pythonanywhere.com/'
 
 
 function saveNewSchema(){

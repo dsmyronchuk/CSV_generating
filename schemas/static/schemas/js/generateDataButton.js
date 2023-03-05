@@ -1,6 +1,6 @@
 let generateButton = document.querySelector('#Generate-data')
 generateButton.addEventListener('click', generateNewDataSet)
-let url = 'http://127.0.0.1:8000/'
+let url = 'http://dsmyronchuk.pythonanywhere.com/'
 
 
 function generateNewDataSet(){
