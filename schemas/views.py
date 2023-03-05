@@ -145,7 +145,7 @@ class GenerateData(View):
         file_path = os.path.join(settings.STATIC_ROOT, 'csv_files', f'{schema.Name}_dataset_{new_data_set.pk}.csv')
         df.to_csv(file_path, sep=separator, quotechar=quoting, quoting=csv.QUOTE_MINIMAL, index=False)
 
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'schema_name': schema.Name, 'data_set_pk': new_data_set.pk})
 
 
 def download_file(request, schema_name, dataset_id):

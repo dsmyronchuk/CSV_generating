@@ -2,7 +2,6 @@ let generateButton = document.querySelector('#Generate-data')
 generateButton.addEventListener('click', generateNewDataSet)
 let url = 'http://dsmyronchuk.pythonanywhere.com/'
 
-
 function generateNewDataSet(){
     const [processingBlock, downloadBlock] = addRowToPage()
     const content = getData()
@@ -24,7 +23,7 @@ function generateNewDataSet(){
             return response.json();
         })
         .then(data=>{
-          updateStatusROw(processingBlock, downloadBlock)
+          updateStatusROw(processingBlock, downloadBlock, data.schema_name, data.data_set_pk)
         })
         .catch(error => {
             console.log(Error)
@@ -80,7 +79,7 @@ function addRowToPage(){
   return [processingBlock, downloadBlock];
 }
 
-function updateStatusROw(processingBlock, downloadBlock){
+function updateStatusROw(processingBlock, downloadBlock, schema_name, data_set_pk){
   processingBlock.outerHTML = '<div class="dataset-ready">Ready</div>';
-  downloadBlock.textContent = 'Download';
+  downloadBlock.innerHTML = `<a href="/download_csv/${schema_name}/${data_set_pk}/">Download</a>`
 }
