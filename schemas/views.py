@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView, DetailView
+
+from CSV_generating import settings
 from schemas.models import *
 from django.contrib.auth.models import User
 from django.middleware.csrf import get_token
@@ -140,7 +142,7 @@ class GenerateData(View):
         separator = separator_dict[selected_separator]
 
         df = pd.DataFrame.from_dict(rows_dict)
-        file_path = f'static/csv_files/{schema.Name}_dataset_{new_data_set.pk}.csv'
+        file_path = os.path.join(settings.STATIC_ROOT, 'csv_files', f'{schema.Name}_dataset_{new_data_set.pk}.csv')
         df.to_csv(file_path, sep=separator, quotechar=quoting, quoting=csv.QUOTE_MINIMAL, index=False)
 
         return JsonResponse({'status': 'ok'})
@@ -148,5 +150,5 @@ class GenerateData(View):
 
 def download_file(request, schema_name, dataset_id):
     filename = f'{schema_name}_dataset_{dataset_id}.csv'
-    file_path = f'static/csv_files/{filename}'
+    file_path = os.path.join(settings.STATIC_ROOT, 'csv_files', filename)
     return FileResponse(open(file_path, 'rb'))

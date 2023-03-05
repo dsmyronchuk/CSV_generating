@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d$d2o85qgf$^e(r(1nhewbyjw#ze*-t9j9hv12g16w3t_g=#!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "dsmyronchuk.pythonanywhere.com/", "www.dsmyronchuk.pythonanywhere.com/"]
 
 
 # Application definition
@@ -78,14 +78,18 @@ WSGI_APPLICATION = 'CSV_generating.wsgi.application'
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CSV_generating',
+        # 'NAME': 'CSV_generating',
         # 'USER': 'django_user',
+        # 'PASSWORD': 'NoizeMc2022',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
+
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dsmyronchuk$default',
         'USER': 'dsmyronchuk',
         'PASSWORD': 'NoizeMc2022',
-        # 'HOST': 'localhost',
         'HOST': 'dsmyronchuk.mysql.pythonanywhere-services.com',
-        'PORT': '5432'
+        'PORT': '',
     }
 }
 

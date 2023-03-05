@@ -51,12 +51,12 @@ function getData(){
 function addRowToPage(){
   const table = document.querySelector('#data-sets');
   const allNumber = table.querySelectorAll('.table-numeric');
-  const number = 0
-  
+  let number = 1
+ 
   if (allNumber.length != 0){
-    let number = parseInt(allNumber[allNumber.length - 1].textContent) +1
+    number = parseInt(allNumber[allNumber.length - 1].textContent) +1
   }
-
+ 
   const date = new Date().toISOString().slice(0, 10);
 
   table.insertAdjacentHTML(
