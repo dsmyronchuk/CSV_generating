@@ -17,6 +17,12 @@ class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'users/login.html'
 
+    def form_valid(self, form):
+        if not form.get_user().is_active:
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('DateSchemas')
 

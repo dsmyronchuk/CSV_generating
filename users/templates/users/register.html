@@ -13,13 +13,13 @@
 </head>
 <body>
     <div class="box">
-        
+
         <form method="post">
             {% csrf_token %}
             <div class="box-label">
                 <h1>Login</h1>
             </div>
-            
+
             {% for field in form %}
             <div class="mb-3">
                 <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
@@ -28,17 +28,8 @@
             </div>
             {% endfor %}
 
-            {% if form.non_field_errors %}
-                <div style="width: 300px; font-size: 12px;" class="alert alert-danger" role="alert">
-                    {{ form.non_field_errors }}
-                </div>
-            {% endif %}
-
-            <div class="submit-block">
-                <div id="register-button"><a href="{% url 'register' %}">Register</a></div>
-                <div class="box-submit">
-                    <button type="submit" id="submit-button" class="btn btn-primary">Login</button>
-                </div>
+            <div class="box-submit">
+                <button type="submit" id="submit-button" class="btn btn-primary">Login</button>
             </div>
         </form>
     </div>
