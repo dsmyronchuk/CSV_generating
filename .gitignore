@@ -4,6 +4,6 @@
 __pycache__/
 migrations/
 .env
-
+static/csv_files
 
 
