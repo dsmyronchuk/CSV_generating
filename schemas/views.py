@@ -1,18 +1,15 @@
-import csv
-import os
-
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, FileResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import ListView, DetailView
-
+from django.views.generic import ListView, DetailView, DeleteView
 from CSV_generating import settings
 from schemas.models import *
 from django.contrib.auth.models import User
-from django.middleware.csrf import get_token
 from faker import Faker
+import csv
+import os
 import json
 import pandas as pd
 
@@ -146,6 +143,13 @@ class GenerateData(View):
         df.to_csv(file_path, sep=separator, quotechar=quoting, quoting=csv.QUOTE_MINIMAL, index=False)
 
         return JsonResponse({'schema_name': schema.Name, 'data_set_pk': new_data_set.pk})
+
+
+class DeleteSchemas(View):
+    def delete(self, request, pk):
+        schema = get_object_or_404(Schemas, pk=pk)
+        schema.delete()
+        return JsonResponse({'message': 'Object deleted successfully.'})
 
 
 def download_file(request, schema_name, dataset_id):

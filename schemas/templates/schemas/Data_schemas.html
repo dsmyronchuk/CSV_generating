@@ -39,8 +39,7 @@
                         <td class="col-2">{{i.Modified|date:'Y-m-d'}}</td>			
                         <td class="col-2">
                             <div class="actions-block">
-                                <div class="edit">Edit schema</div>
-                                <div class="delete"><a>Delete</a></div>
+                                <div row="{{i.pk}}" class="delete"><a>Delete</a></div>
                             </div>
                         </td>	
                     </tr>
@@ -52,9 +51,12 @@
 </div>
 
 <script>
+const csrfToken = "{{ csrf_token }}";
 const button = document.getElementById('NewSchema-button');
 button.addEventListener('click', function() {
   window.location.href = "{% url 'NewSchemas' %}";
 });
 </script>
+    
+<script src="{% static 'schemas/js/deleteSchema.js' %}"></script>
 {% endblock %}

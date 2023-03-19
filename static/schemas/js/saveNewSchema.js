@@ -1,13 +1,8 @@
 let btnSubmit = document.querySelector('#NewSchema-submit')
 btnSubmit.addEventListener('click', saveNewSchema)
+// let url = 'http://dsmyronchuk.pythonanywhere.com/'
 let url = 'http://127.0.0.1:8000/'
 
-let csrfToken
-fetch(`${url}get_csrf_token/`)
-  .then(response => response.json())
-  .then(data => {
-    csrfToken = data.csrf_token;
-  });
 
 function saveNewSchema(){
     const content = getData()
@@ -20,6 +15,21 @@ function saveNewSchema(){
           },
         body: JSON.stringify(content)
       };
+
+    let errorSpace = document.querySelector('#error-space'); // Get the error space element
+    
+    // check min/max value in Integer columns 
+    for (let column in content.allColumns) {
+        if (content.allColumns[column][0] === 'Integer') {
+            let min = parseInt(content.allColumns[column][2]);
+            let max = parseInt(content.allColumns[column][3]);
+
+            if (min > max) {
+                errorSpace.innerHTML = 'The minimum value should be less than the maximum value';
+                return; // Stop the function execution
+            }
+        }
+    }
     
     fetch(`${url}save_schema/`, options)
         .then(response => {
@@ -32,8 +42,6 @@ function saveNewSchema(){
             window.location.replace(`${url}/`)
         })
         .catch(error => {
-            const errorSpace = document.querySelector('#error-space')
-            console.log(errorSpace.innerHTML)
             if (errorSpace.innerHTML == ''){
                 errorSpace.innerHTML = error;
             }
@@ -64,9 +72,16 @@ function getData(){
         const columnName = allRows[i].querySelector('.left-block .input-text').value;
         const columnType = allRows[i].querySelector('.center-block .selected-value').textContent;
         const orderColumn = allRows[i].querySelector('.block-del-order .input-text').value;
-        allColumns[columnName] = [columnType, orderColumn]
+        if (columnType !== 'Integer'){
+          allColumns[columnName] = [columnType, orderColumn];
+        }
+        else{
+          const min = allRows[i].querySelector('.functional-left .input-text').value;
+          const max = allRows[i].querySelector('.functional-right .input-text').value;
+          allColumns[columnName] = [columnType, orderColumn, min, max];
+        }
     }
-
     content['allColumns'] = allColumns
     return content
-}
+  }
+

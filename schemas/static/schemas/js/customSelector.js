@@ -11,11 +11,8 @@ function cusSelector(event) {
   let selected = customSelect.querySelector('.selected-value');
   let options = select.querySelectorAll('option');
 
-
   let currentIndex = customSelect.dataset.currentIndex || 0;
   
-  // selected.innerHTML = 'options[currentIndex].innerHTML;'
-
   if (target.classList.contains('btn-up')) {
     if (currentIndex < options.length - 1) {
       currentIndex++;
@@ -37,8 +34,6 @@ function cusSelector(event) {
   checkOrder(selected);
 
 }
-
-
 
 
 function checkOrder (selected){

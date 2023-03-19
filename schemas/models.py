@@ -22,8 +22,8 @@ class Schemas(models.Model):
 class SchemasColumn(models.Model):
     Name = models.CharField(max_length=255,  null=False)
     Order = models.IntegerField(null=False)
-    Schemas = models.ForeignKey('Schemas', on_delete=models.PROTECT)
-    TypeColumn = models.ForeignKey('TypeColumn', on_delete=models.PROTECT,  null=False)
+    Schemas = models.ForeignKey('Schemas', on_delete=models.CASCADE)
+    TypeColumn = models.ForeignKey('TypeColumn', on_delete=models.CASCADE,  null=False)
     min_value = models.IntegerField(blank=True, null=True)
     max_value = models.IntegerField(blank=True, null=True)
 
@@ -40,7 +40,7 @@ class TypeColumn(models.Model):
 
 class DataSets(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    Schemas = models.ForeignKey(Schemas, on_delete=models.PROTECT)
+    Schemas = models.ForeignKey(Schemas, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Сначала сохраняем модель
@@ -54,8 +54,8 @@ class DataSets(models.Model):
 
 class ColumnRows(models.Model):
     DataRow = models.CharField(max_length=255)
-    DataSet = models.ForeignKey(DataSets, on_delete=models.PROTECT)
-    TypeColumn = models.ForeignKey('SchemasColumn', on_delete=models.PROTECT)
+    DataSet = models.ForeignKey(DataSets, on_delete=models.CASCADE)
+    TypeColumn = models.ForeignKey('SchemasColumn', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.DataRow[:20]

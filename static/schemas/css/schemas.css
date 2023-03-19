@@ -35,6 +35,12 @@ p,a {
 }
 
 
+#edit-schema{
+    padding-top: 5px;
+}
+
+
+
 .container-style{
 	margin-left: 3.5rem;
     padding: 0;
@@ -231,9 +237,6 @@ p,a {
 
 /* data sets page */
 
-#edit-schema{
-    padding-top: 5px;
-}
 
 .data-set{
     line-height: 3rem;
@@ -245,6 +248,24 @@ p,a {
     height: 5vh;
 }
 
-#download-csv{
+.download-csv{
     color: #0b5ed7;
+}
+
+.dataset-ready{
+    padding-left: 10px;
+    width: 25%;
+    background-color: #008000;
+    border: 1px solid #008000;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.dataset-processing{
+    padding-left: 10px;
+    width: 35%;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    color: #fff;
 }

@@ -5,3 +5,4 @@ sqlparse==0.4.3
 Faker==17.6.0
 pandas==1.5.3
 mysqlclient
+python-dotenv~=1.0.0

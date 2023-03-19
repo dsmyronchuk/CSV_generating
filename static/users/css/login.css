@@ -31,9 +31,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    width: 70%;
 }
 
 #submit-button{
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.submit-block{
+    display: flex;
+}
+
+#register-button{
+    width: 30%;
+    color: #0D6EFD;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#register-button a{
+    color: #0D6EFD;
+    padding: 10%;
 }

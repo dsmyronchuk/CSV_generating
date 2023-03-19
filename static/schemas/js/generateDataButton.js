@@ -1,15 +1,10 @@
 let generateButton = document.querySelector('#Generate-data')
-generateButton.addEventListener('click', generateData)
+generateButton.addEventListener('click', generateNewDataSet)
+// let url = 'http://dsmyronchuk.pythonanywhere.com/'
 let url = 'http://127.0.0.1:8000/'
 
-let csrfToken
-fetch(`${url}get_csrf_token/`)
-  .then(response => response.json())
-  .then(data => {
-    csrfToken = data.csrf_token;
-  });
-
-function generateData(){
+function generateNewDataSet(){
+    const [processingBlock, downloadBlock] = addRowToPage()
     const content = getData()
 
     const options = {
@@ -28,6 +23,9 @@ function generateData(){
             }
             return response.json();
         })
+        .then(data=>{
+          updateStatusROw(processingBlock, downloadBlock, data.schema_name, data.data_set_pk)
+        })
         .catch(error => {
             console.log(Error)
         });
@@ -37,8 +35,8 @@ function generateData(){
 function getData(){
     const content = new Object
 
-    const url = window.location.href; // получаем текущий URL
-    const urlObject = new URL(url); // создаем объект URL из строки
+    const url = window.location.href;
+    const urlObject = new URL(url);
     const schemaID = urlObject.pathname.split('/')[2]
 
     const amountRows = document.querySelector('#count-rows .input-text').value
@@ -50,3 +48,39 @@ function getData(){
 }
 
 
+function addRowToPage(){
+  const table = document.querySelector('#data-sets');
+  const allNumber = table.querySelectorAll('.table-numeric');
+  let number = 1
+ 
+  if (allNumber.length != 0){
+    number = parseInt(allNumber[allNumber.length - 1].textContent) +1
+  }
+ 
+  const date = new Date().toISOString().slice(0, 10);
+
+  table.insertAdjacentHTML(
+    'beforeend',
+    `
+    <tbody>
+    <tr>
+        <td class="col-1 table-numeric">${number}</td>
+        <td class="col-2">${date}</td>
+        <td class="col-2">
+            <div id="processing-${number}" class="dataset-processing">Processing</div>
+        </td>
+        <td class="col-2 download-csv" id="download-${number}"></td>
+    </tr>
+</tbody>	
+    `
+  )
+
+  const processingBlock = table.querySelector(`#processing-${number}`);
+  const downloadBlock = table.querySelector(`#download-${number}`);
+  return [processingBlock, downloadBlock];
+}
+
+function updateStatusROw(processingBlock, downloadBlock, schema_name, data_set_pk){
+  processingBlock.outerHTML = '<div class="dataset-ready">Ready</div>';
+  downloadBlock.innerHTML = `<a href="/download_csv/${schema_name}/${data_set_pk}/">Download</a>`
+}
